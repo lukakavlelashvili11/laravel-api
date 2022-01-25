@@ -1,5 +1,7 @@
 <?php
 
+use App\Domains\Articles\Controllers\ArticlesController;
+use App\Domains\Tags\Controllers\TagsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/articles',[ArticlesController::class,'index']);
+Route::get('/articles/{id}/comments',[ArticlesController::class,'getArticleWithComments']);
+Route::get('/tags',[TagsController::class,'index']);
+Route::get('/tags/{id}/articles',[TagsController::class,'getTagWithArticles']);
